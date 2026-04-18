@@ -1,0 +1,160 @@
+/* Общие настройки страницы */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: #0a0a0a;
+    color: #e0e0e0;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 800px;
+    padding: 20px;
+}
+
+/* --- СЕКЦИЯ ЛОГОТИПА --- */
+.logo-section {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.roumber-logo {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: conic-gradient(from 180deg at 50% 50%, #8a2be2, #00d4ff, #00ff88, #8a2be2);
+    margin: 0 auto 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 40px rgba(0, 212, 255, 0.4);
+    position: relative;
+    /* Анимация только для кольца */
+    animation: rotateLogo 8s linear infinite;
+}
+
+/* Внутренний круг (дырка в кольце) */
+.roumber-logo::after {
+    content: '';
+    position: absolute;
+    top: 8px; left: 8px; right: 8px; bottom: 8px;
+    background: #0a0a0a;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+/* Буква R — исправляем анимацию! */
+.roumber-logo span {
+    position: relative;
+    z-index: 2;
+    font-family: 'Arial Black', sans-serif;
+    font-size: 70px;
+    font-weight: bold;
+    background: linear-gradient(135deg, #8a2be2, #00d4ff, #00ff88);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    
+    /* ХИТРОСТЬ: крутим букву в обратную сторону, чтобы она казалась неподвижной */
+    animation: counterRotate 8s linear infinite;
+    display: block;
+}
+
+@keyframes rotateLogo {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes counterRotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(-360deg); }
+}
+
+/* --- ОСТАЛЬНОЙ ДИЗАЙН --- */
+h1 {
+    font-size: 3rem;
+    margin: 0;
+    color: #fff;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+}
+
+.subtitle {
+    font-size: 1rem;
+    color: #88929b;
+    margin: 5px 0 0;
+    letter-spacing: 2px;
+}
+
+.search-section {
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.search-bar {
+    display: flex;
+    background-color: #171717;
+    border: 1px solid #333;
+    border-radius: 12px;
+    padding: 10px 15px;
+    transition: all 0.3s;
+}
+
+.search-bar:focus-within {
+    border-color: #66c0f4;
+    box-shadow: 0 0 15px rgba(102, 192, 244, 0.2);
+}
+
+.search-bar input {
+    flex-grow: 1;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 1.1rem;
+    padding: 10px;
+    outline: none;
+}
+
+.search-btn {
+    background: #fff;
+    color: #0a0a0a;
+    border: none;
+    border-radius: 8px;
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.shortcuts-section {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.shortcut-btn {
+    text-decoration: none;
+    background-color: #1f1f1f;
+    color: #fff;
+    border: 1px solid #333;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+
+.shortcut-btn:hover {
+    background-color: #2a2a2a;
+    border-color: #444;
+}
