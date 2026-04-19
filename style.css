@@ -1,160 +1,114 @@
-/* Общие настройки страницы */
+/* ОБЩИЕ СТИЛИ */
 body, html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    background-color: #0a0a0a;
-    color: #e0e0e0;
-    font-family: 'Segoe UI', Roboto, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    margin: 0; padding: 0; height: 100%;
+    background-color: #0a0a0a; color: #fff;
+    font-family: 'Segoe UI', sans-serif;
+    display: flex; justify-content: center; align-items: center;
     overflow: hidden;
 }
 
+.main-wrapper { width: 100%; display: flex; justify-content: center; }
+
 .main-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    max-width: 800px;
-    padding: 20px;
+    display: flex; flex-direction: column; align-items: center;
+    width: 100%; max-width: 800px; padding: 20px;
 }
 
-/* --- СЕКЦИЯ ЛОГОТИПА --- */
-.logo-section {
-    text-align: center;
-    margin-bottom: 50px;
-}
-
+/* ТО САМОЕ КОЛЬЦО */
 .roumber-logo {
-    width: 140px;
-    height: 140px;
-    border-radius: 50%;
+    width: 140px; height: 140px; border-radius: 50%;
     background: conic-gradient(from 180deg at 50% 50%, #8a2be2, #00d4ff, #00ff88, #8a2be2);
-    margin: 0 auto 25px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    margin: 0 auto 25px; display: flex; justify-content: center; align-items: center;
     box-shadow: 0 0 40px rgba(0, 212, 255, 0.4);
-    position: relative;
-    /* Анимация только для кольца */
-    animation: rotateLogo 8s linear infinite;
+    position: relative; animation: rotateLogo 8s linear infinite;
 }
 
-/* Внутренний круг (дырка в кольце) */
 .roumber-logo::after {
-    content: '';
-    position: absolute;
+    content: ''; position: absolute;
     top: 8px; left: 8px; right: 8px; bottom: 8px;
-    background: #0a0a0a;
-    border-radius: 50%;
-    z-index: 1;
+    background: #0a0a0a; border-radius: 50%; z-index: 1;
 }
 
-/* Буква R — исправляем анимацию! */
 .roumber-logo span {
-    position: relative;
-    z-index: 2;
-    font-family: 'Arial Black', sans-serif;
-    font-size: 70px;
-    font-weight: bold;
+    position: relative; z-index: 2; font-family: 'Arial Black', sans-serif;
+    font-size: 70px; font-weight: bold;
     background: linear-gradient(135deg, #8a2be2, #00d4ff, #00ff88);
-    -webkit-background-clip: text;
-    background-clip: text;
+    -webkit-background-clip: text; background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-    
-    /* ХИТРОСТЬ: крутим букву в обратную сторону, чтобы она казалась неподвижной */
-    animation: counterRotate 8s linear infinite;
-    display: block;
+    animation: counterRotate 8s linear infinite; display: block;
 }
 
-@keyframes rotateLogo {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
+@keyframes rotateLogo { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes counterRotate { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
 
-@keyframes counterRotate {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(-360deg); }
-}
+h1 { font-size: 3rem; margin: 0; letter-spacing: 5px; text-transform: uppercase; }
+.subtitle { color: #88929b; margin-top: 5px; letter-spacing: 2px; }
 
-/* --- ОСТАЛЬНОЙ ДИЗАЙН --- */
-h1 {
-    font-size: 3rem;
-    margin: 0;
-    color: #fff;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-}
-
-.subtitle {
-    font-size: 1rem;
-    color: #88929b;
-    margin: 5px 0 0;
-    letter-spacing: 2px;
-}
-
-.search-section {
-    width: 100%;
-    margin-bottom: 40px;
-}
-
+/* ПОИСКОВАЯ СТРОКА */
+.search-section { width: 100%; margin: 40px 0; }
 .search-bar {
-    display: flex;
-    background-color: #171717;
-    border: 1px solid #333;
-    border-radius: 12px;
-    padding: 10px 15px;
-    transition: all 0.3s;
+    display: flex; background-color: #171717; border: 1px solid #333;
+    border-radius: 12px; padding: 5px 15px; transition: 0.3s;
 }
-
-.search-bar:focus-within {
-    border-color: #66c0f4;
-    box-shadow: 0 0 15px rgba(102, 192, 244, 0.2);
-}
-
+.search-bar:focus-within { border-color: #00d4ff; box-shadow: 0 0 15px rgba(0, 212, 255, 0.2); }
 .search-bar input {
-    flex-grow: 1;
-    background: transparent;
-    border: none;
-    color: #fff;
-    font-size: 1.1rem;
-    padding: 10px;
-    outline: none;
+    flex-grow: 1; background: transparent; border: none;
+    color: #fff; font-size: 1.1rem; padding: 10px; outline: none;
 }
-
 .search-btn {
-    background: #fff;
-    color: #0a0a0a;
-    border: none;
-    border-radius: 8px;
-    width: 40px;
-    height: 40px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    font-weight: bold;
+    background: #fff; border: none; border-radius: 8px;
+    width: 40px; height: 40px; cursor: pointer; font-weight: bold;
 }
 
-.shortcuts-section {
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-}
-
+/* КНОПКИ-ССЫЛКИ */
+.shortcuts-section { display: flex; gap: 15px; }
 .shortcut-btn {
-    text-decoration: none;
-    background-color: #1f1f1f;
-    color: #fff;
-    border: 1px solid #333;
-    padding: 12px 24px;
-    border-radius: 8px;
-    font-size: 0.9rem;
-    transition: 0.3s;
+    text-decoration: none; background-color: #1f1f1f; color: #fff;
+    border: 1px solid #333; padding: 12px 24px; border-radius: 8px;
+    font-size: 0.9rem; transition: 0.3s;
+}
+.shortcut-btn:hover { background-color: #2a2a2a; border-color: #444; }
+
+/* ИСТОРИЯ */
+.history-grid {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    justify-content: center; margin-top: 30px; max-width: 600px;
 }
 
-.shortcut-btn:hover {
-    background-color: #2a2a2a;
-    border-color: #444;
+.history-item {
+    background: rgba(255, 255, 255, 0.05); border: 1px solid #333;
+    padding: 8px 15px; border-radius: 20px; font-size: 0.8rem;
+    color: #00d4ff; cursor: pointer; transition: 0.3s; text-transform: lowercase;
+}
+
+.history-item:hover {
+    background: rgba(0, 212, 255, 0.1); border-color: #00d4ff;
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+}
+
+/* БЕЛАЯ КНОПКА ОЧИСТКИ В УГЛУ */
+.clear-history-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    padding: 10px 20px;
+    background: #fff;
+    border: none;
+    border-radius: 30px;
+    color: #000;
+    font-size: 0.75rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.clear-history-btn:hover {
+    background: #fff;
+    color: #000;
+    box-shadow: 0 0 20px #fff, 0 0 40px rgba(255, 255, 255, 0.6);
+    transform: translateY(-2px);
 }

@@ -1,29 +1,53 @@
-const searchForm = document.getElementById('search-form');
-const searchInput = document.getElementById('search-input');
+renderHistory();
 
-searchForm.addEventListener('submit', function(e) {
-    e.preventDefault(); // Чтобы страница не перезагружалась
+document.getElementById('main-search-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    let input = document.getElementById('main-search-input');
+    let query = input.value.trim();
+    let lowerQuery = query.toLowerCase();
     
-    const query = searchInput.value.toLowerCase().trim();
+    if (query !== "") {
+        saveToHistory(query);
 
-    // Логика переходов по кодовым словам
-    if (query === 'google') {
-        window.location.href = 'https://www.google.com';
-    } 
-    else if (query === 'youtube' || query === 'ютюб') {
-        window.location.href = 'https://www.youtube.com';
-    } 
-    else if (query === 'chatgpt' || query === 'ии') {
-        window.location.href = 'https://chatgpt.com';
-    } 
-    else if (query === 'github') {
-        window.location.href = 'https://github.com';
-    }
-    else if (query === 'roumber') {
-        alert('Вы уже в будущем! ROUMBER активирован.');
-    }
-    // Если ввел что-то другое - просто ищем это в Google
-    else if (query !== "") {
-        window.location.href = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+        let targetUrl = "";
+        if (lowerQuery === 'ютуб' || lowerQuery === 'youtube') targetUrl = 'https://www.youtube.com';
+        else if (lowerQuery === 'вк' || lowerQuery === 'vk') targetUrl = 'https://www.vk.com';
+        else if (query.includes('.') && !query.includes(' ')) {
+            targetUrl = query.startsWith('http') ? query : 'https://' + query;
+        } else {
+            targetUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+        }
+
+        window.open(targetUrl, '_blank');
+        input.value = ""; 
+        renderHistory();
     }
 });
+
+function saveToHistory(q) {
+    let history = JSON.parse(localStorage.getItem('roumber_hist')) || [];
+    history = history.filter(item => item !== q);
+    history.unshift(q);
+    localStorage.setItem('roumber_hist', JSON.stringify(history.slice(0, 8)));
+}
+
+function renderHistory() {
+    const container = document.getElementById('history-container');
+    let history = JSON.parse(localStorage.getItem('roumber_hist')) || [];
+    container.innerHTML = history.map(q => `
+        <div class="history-item" onclick="quickSearch('${q}')">${q}</div>
+    `).join('');
+}
+
+function quickSearch(q) {
+    document.getElementById('main-search-input').value = q;
+    document.getElementById('main-search-form').dispatchEvent(new Event('submit'));
+}
+
+// Функция для полной очистки истории
+function clearHistory() {
+    if (confirm("Точно очистить всю историю поиска?")) {
+        localStorage.removeItem('roumber_hist'); // Удаляем данные из памяти
+        renderHistory(); // Перерисовываем экран (он станет пустым)
+    }
+}
