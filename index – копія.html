@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roumber Start Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="home-screen" class="main-wrapper">
+        <div class="main-container">
+            
+            <div class="logo-section">
+                <div class="roumber-logo"><span>R</span></div>
+                <h1 id="main-title"><span id="branding-title">ROUMBER</span></h1>
+                <p class="subtitle">of the future</p>
+            </div>
+
+            <form class="search-section" id="main-search-form">
+                <div class="search-bar">
+                    <a href="https://gemini.google.com" class="search-ai-btn" target="_blank" title="Спросить ИИ-помощника Roumber">✦</a>
+                    <input type="text" id="main-search-input" placeholder="Спроси ROUMBER о будущем..." autocomplete="off">
+                    <button type="submit" class="search-btn">→</button>
+                </div>
+            </form>
+
+            <div class="shortcuts-section">
+                <a href="https://github.com" class="shortcut-btn" target="_blank">GitHub</a>
+                <a href="https://youtube.com" class="shortcut-btn" target="_blank">YouTube</a>
+                <a href="https://google.com" class="shortcut-btn" target="_blank">Google</a>
+            </div>
+
+            <div id="history-container" class="history-grid"></div>
+
+        </div>
+    </div>
+
+    <div class="clear-history-btn" onclick="clearHistory()">Очистить историю</div>
+    <div class="login-corner-btn" id="login-trigger-btn" onclick="openLoginModal()">Login</div>
+
+    <div id="login-modal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-modal-btn" onclick="closeLoginModal()">&times;</span>
+            <h2>Регистрация в ROUMBER</h2>
+            <p>Введи данные, чтобы Roumber узнал тебя</p>
+            <form id="register-form">
+                <input type="text" id="reg-name" placeholder="Твой Никнейм" required autocomplete="off">
+                <input type="email" id="reg-email" placeholder="Email (например, @gmail.com)" required>
+                <input type="password" id="reg-password" placeholder="Пароль" required>
+                <button type="submit" class="modal-submit-btn">Войти в будущее</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
